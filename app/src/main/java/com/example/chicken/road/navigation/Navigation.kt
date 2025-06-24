@@ -8,6 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.chicken.presentation.EndGameScreen
+import com.example.chicken.presentation.GameScreen
 import com.example.chicken.presentation.HomeScreen
 
 
@@ -27,13 +29,15 @@ fun AppNavHost(
     ) {
         composable(route = AppDestinations.HOME_ROUTE) {
             Log.d("AppNavHost", "AppNavHost: HOME_ROUTE")
-            HomeScreen()
+            HomeScreen(onPlayClick = { mapFeatureNavigator.navigateToGame() } )
         }
         composable(route = AppDestinations.GAME_ROUTE) {
             Log.d("AppNavHost", "AppNavHost: GAME_ROUTE")
+            GameScreen(onGameOver = { mapFeatureNavigator.navigateToGameOver() } )
         }
         composable(route = AppDestinations.GAME_OVER_ROUTE) {
             Log.d("AppNavHost", "AppNavHost: GAME_OVER_ROUTE")
+            EndGameScreen(onClick = { mapFeatureNavigator.navigateToHome() })
         }
     }
 
